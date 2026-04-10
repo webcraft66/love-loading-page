@@ -1,0 +1,600 @@
+/* Love is Loading - Romantic Balloon Gift Page */
+/* Pink/Purple Romantic Theme with Floating Balloons */
+
+:root {
+  --romantic-pink: #FF69B4;
+  --deep-purple: #8A2BE2;
+  --soft-pink: #FFB6C1;
+  --rose-gold: #F4C2C2;
+  --heart-red: #FF1493;
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --shadow-romantic: 0 20px 60px rgba(255, 105, 180, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="heartGrad" cx="50%" cy="50%"><stop offset="0%" stop-color="%23FF1493" stop-opacity="0.3"/><stop offset="70%" stop-color="%23FF69B4" stop-opacity="0.1"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><circle cx="20" cy="20" r="3" fill="url(%23heartGrad)"><animate attributeName="cy" values="20;15;20" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="80" r="2" fill="url(%23heartGrad)"><animate attributeName="cy" values="80;75;80" dur="4s" repeatCount="indefinite"/></circle><circle cx="40" cy="60" r="1.5" fill="url(%23heartGrad)"><animate attributeName="cy" values="60;55;60" dur="2.5s" repeatCount="indefinite"/></circle></svg>') repeat;
+  z-index: -1;
+  animation: sparkle 20s linear infinite;
+}
+
+@keyframes sparkle {
+  0% { transform: rotate(0deg) translateX(0); }
+  100% { transform: rotate(360deg) translateX(10px); }
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.love-loader {
+  text-align: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.heart-pulse {
+  font-size: 4rem;
+  color: var(--heart-red);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.love-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 8vw, 6rem);
+  background: linear-gradient(135deg, var(--heart-red), var(--romantic-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+}
+
+.loading-bar {
+  width: 300px;
+  max-width: 80vw;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 2rem auto;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--heart-red), var(--romantic-pink), var(--rose-gold));
+  border-radius: 10px;
+  width: 0%;
+  animation: loadProgress 4s ease-in-out forwards;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+}
+
+@keyframes loadProgress {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.loading-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+  font-weight: 300;
+  animation: fadeInUp 1s ease 2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Balloons Container */
+.balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  left: var(--left-start);
+  width: 80px;
+  height: 100px;
+  cursor: pointer;
+  animation: floatUp 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  10% {
+    transform: translateY(-10px) rotate(5deg) scale(1.05);
+  }
+  90% {
+    transform: translateY(-100vh) rotate(-5deg) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.balloon-string {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to top, #333, transparent);
+}
+
+.balloon-body {
+  width: 100%;
+  height: 80%;
+  border-bottom-left-radius: 60% 50%;
+  border-bottom-right-radius: 60% 50%;
+  border-top-left-radius: 50% 40%;
+  border-top-right-radius: 50% 40%;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.balloon:hover .balloon-body {
+  transform: scale(1.1);
+}
+
+.balloon-message {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: messageBounce 0.6s ease 0.5s both;
+  opacity: 0;
+}
+
+@keyframes messageBounce {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px) scale(0.8); }
+  60% { transform: translateX(-50%) translateY(-5px) scale(1.05); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.ballon1 .balloon-body { background: linear-gradient(135deg, #FF6B9D, #C44569); }
+.ballon2 .balloon-body { background: linear-gradient(135deg, #A8E6CF, #88D8A3); }
+.ballon3 .balloon-body { background: linear-gradient(135deg, #FFABAB, #FF8E8E); }
+.ballon4 .balloon-body { background: linear-gradient(135deg, #FFEAA7, #FFD93D); }
+.ballon5 .balloon-body { background: linear-gradient(135deg, #DDA0DD, #C71585); }
+.ballon6 .balloon-body { background: linear-gradient(135deg, #98D8C8, #A9DFBF); }
+.ballon7 .balloon-body { background: linear-gradient(135deg, #F7DC6F, #F1C40F); }
+.ballon8 .balloon-body { background: linear-gradient(135deg, #BB8FCE, #9B59B6); }
+
+.ballon1 { --left-start: 10%; animation-duration: 7s; animation-delay: 0.2s; }
+.ballon2 { --left-start: 20%; animation-duration: 9s; animation-delay: 0.5s; }
+.ballon3 { --left-start: 30%; animation-duration: 8s; animation-delay: 1s; }
+.ballon4 { --left-start: 40%; animation-duration: 10s; animation-delay: 1.5s; }
+.ballon5 { --left-start: 50%; animation-duration: 7.5s; animation-delay: 2s; }
+.ballon6 { --left-start: 60%; animation-duration: 9.5s; animation-delay: 2.5s; }
+.ballon7 { --left-start: 70%; animation-duration: 8.5s; animation-delay: 3s; }
+.ballon8 { --left-start: 80%; animation-duration: 9s; animation-delay: 3.5s; }
+.ballon9 { --left-start: 90%; animation-duration: 10s; animation-delay: 4s; }
+.ballon10 { --left-start: 5%; animation-duration: 7s; animation-delay: 4.5s; }
+
+/* Gift Reveal with Virtual Gifts */
+.gift-reveal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeInBig 1.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.gift-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gift-ribbon {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.ribbon-bow {
+  display: flex;
+  align-items: center;
+}
+
+.bow-left, .bow-right {
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(45deg, #FF69B4, #FF1493);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  margin: 0 5px;
+  animation: bowBounce 2s ease-in-out infinite;
+}
+
+.bow-tail {
+  width: 120px;
+  height: 30px;
+  background: linear-gradient(-45deg, #FF69B4, #FF1493);
+  border-radius: 50px;
+  margin-left: -30px;
+  animation: tailSwing 3s ease-in-out infinite;
+}
+
+@keyframes bowBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes tailSwing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.gift-box {
+  perspective: 1000px;
+  animation: giftShake 3s ease-in-out infinite;
+}
+
+@keyframes giftShake {
+  0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
+  25% { transform: rotateY(2deg); }
+  75% { transform: rotateY(-2deg); }
+}
+
+.gift-lid {
+  width: 320px;
+  height: 120px;
+  background: linear-gradient(135deg, #FF8E8E, #FFB6C1);
+  border-radius: 20px 20px 10px 10px;
+  position: relative;
+  margin: 0 auto 5px;
+  box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4);
+  animation: lidGlow 2s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+@keyframes lidGlow {
+  from { box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4); }
+  to { box-shadow: 0 20px 50px rgba(255, 105, 180, 0.7); }
+}
+
+.gift-body {
+  width: 320px;
+  height: 200px;
+  background: linear-gradient(135deg, #FFB3BA, #FFDFBA);
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(255, 182, 193, 0.5);
+  position: relative;
+}
+
+.virtual-gift-content {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.sparkle-gift {
+  font-size: 4rem;
+  color: var(--heart-red);
+  animation: sparkleGift 1.5s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+}
+
+@keyframes sparkleGift {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+}
+
+.virtual-gift-content h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  margin: 1rem 0;
+  background: linear-gradient(135deg, var(--heart-red), var(--romantic-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.virtual-gifts {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 3rem 0;
+  perspective: 1000px;
+}
+
+.gift-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 220px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  animation: cardFloat 4s ease-in-out infinite;
+  box-shadow: var(--shadow-romantic);
+}
+
+.gift-card:hover {
+  transform: translateY(-15px) rotateY(10deg) rotateX(5deg) scale(1.05);
+  box-shadow: 0 30px 80px rgba(255, 105, 180, 0.6);
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-10px) rotateY(5deg); }
+}
+
+.gift-card i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.rose i { color: #FF69B4; }
+.chocolate i { color: #8B4513; }
+.heart-necklace i { color: #DDA0DD; }
+.love-letter i { color: #FF1493; }
+.stars i { color: #FFD700; }
+
+.gift-card h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--heart-red);
+}
+
+.gift-card p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.final-message {
+  margin: 2rem 0;
+}
+
+.love-forever {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--heart-red), var(--romantic-pink), white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 20px rgba(255, 105, 180, 0.5); }
+  to { text-shadow: 0 0 40px rgba(255, 105, 180, 1); }
+}
+
+.final-message p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
+}
+
+@keyframes fadeInBig {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gift-content {
+  position: relative;
+}
+
+.hearts-float {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  animation: heartsFloat 3s ease-in-out infinite;
+}
+
+@keyframes heartsFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  33% { transform: translateX(-50%) translateY(-20px) rotate(10deg); }
+  66% { transform: translateX(-50%) translateY(-10px) rotate(-10deg); }
+}
+
+.gift-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(4rem, 10vw, 7rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--heart-red), var(--romantic-pink), var(--rose-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+}
+
+.gift-message {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-weight: 300;
+}
+
+.gift-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, var(--heart-red), var(--romantic-pink));
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-romantic);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 30px 80px rgba(255, 105, 180, 0.5);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--romantic-pink);
+  border-color: var(--romantic-pink);
+}
+
+.cta-button.secondary:hover {
+  background: var(--romantic-pink);
+  color: white;
+  border-color: var(--heart-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gift-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .balloon {
+    width: 60px;
+    height: 75px;
+  }
+  
+  .balloon-message {
+    font-size: 0.65rem;
+    padding: 6px 10px;
+  }
+}
+
+/* Click balloon effect */
+.balloon.clicked {
+  animation: pop 0.6s ease forwards !important;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

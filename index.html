@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love is Loading... 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="love-loader">
+            <div class="heart-pulse"><i class="fas fa-heart"></i></div>
+            <h1 class="love-title">Love is Loading...</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Preparing something special for you 💝</p>
+        </div>
+    </div>
+
+    <!-- Balloons Container -->
+    <div id="balloons-container" class="balloons-container"></div>
+
+    <!-- Final Gift Reveal with Virtual Gifts -->
+    <section id="gift-reveal" class="gift-reveal" style="display: none;">
+        <div class="container">
+            <div class="gift-wrapper">
+                <div class="gift-ribbon">
+                    <div class="ribbon-bow">
+                        <div class="bow-left"></div>
+                        <div class="bow-right"></div>
+                        <div class="bow-tail"></div>
+                    </div>
+                </div>
+                <div class="gift-box">
+                    <div class="gift-lid"></div>
+                    <div class="gift-body">
+                        <div class="virtual-gift-content">
+                            <i class="fas fa-gift sparkle-gift"></i>
+                            <h2>My Special Gift for You 💝</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Virtual Gifts Carousel -->
+                <div class="virtual-gifts">
+                    <div class="gift-card rose">
+                        <i class="fas fa-rose"></i>
+                        <h3>A Dozen Roses</h3>
+                        <p>"Roses are red, violets are blue, my love for you is forever true 💐"</p>
+                    </div>
+                    <div class="gift-card chocolate">
+                        <i class="fas fa-chocolate-bar"></i>
+                        <h3>Chocolate Box</h3>
+                        <p>"Sweet like your smile, melts my heart every time 🍫💕"</p>
+                    </div>
+                    <div class="gift-card heart-necklace">
+                        <i class="fas fa-gem"></i>
+                        <h3>Heart Necklace</h3>
+                        <p>"Wear my heart around yours, always and forever 💎❤️"</p>
+                    </div>
+                    <div class="gift-card love-letter">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <h3>Love Letter</h3>
+                        <p>"100 reasons why I love you... and counting 📜💌"</p>
+                    </div>
+                    <div class="gift-card stars">
+                        <i class="fas fa-star-and-crescent"></i>
+                        <h3>Starry Night</h3>
+                        <p>"Our love shines brighter than all the stars 🌟✨"</p>
+                    </div>
+                </div>
+                
+                <div class="final-message">
+                    <h1 class="love-forever">You Are My Greatest Gift 🎁💖</h1>
+                    <p>"Every day with you is a treasure. Thank you for loving me."</p>
+                </div>
+                
+                <div class="gift-buttons">
+                    <a href="#" class="cta-button" onclick="shareLove()"><i class="fas fa-share-alt"></i> Share Our Love Story</a>
+                    <a href="#" class="cta-button secondary" onclick="openGiftCarousel()"><i class="fas fa-gifts"></i> Open More Gifts</a>
+                    <a href="#" class="cta-button magic" onclick="restartAnimation()"><i class="fas fa-magic"></i> Magic Again</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
